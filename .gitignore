@@ -1,0 +1,16 @@
+data/virtualSpecies/
+images/*.tif
+data/climate/wc2.1_country
+maxent.jar
+.Rhistory
+.Rproj.user
+
+# Ignore contents of models, but not the directory itself
+data/resultsMain/maps
+data/resultsMain/results
+data/resultsRealModels/results
+data/resultsRealModels/maps
+data/resultsImbalanced/results
+ 
+# Do not ignore Markdown files
+!*.md
