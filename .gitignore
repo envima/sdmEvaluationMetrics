@@ -10,6 +10,7 @@ data/resultsMain/maps
 data/resultsMain/results
 data/resultsRealModels/results
 data/resultsRealModels/maps
+data/resultsRealModels/models
 data/resultsImbalanced/results
  
 # Do not ignore Markdown files
