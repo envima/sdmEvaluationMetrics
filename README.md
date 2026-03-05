@@ -1,4 +1,7 @@
-# The accuracy of evaluation metrics in presence-only species distribution modelling.
+# 🗺️ 📉 The accuracy of evaluation metrics in presence-only species distribution modelling.
+
+[![R-Version](https://img.shields.io/badge/R-4.4.2-%23276DC3.svg?logo=r&logoColor=white)](https://www.r-project.org/)
+[![Status](https://img.shields.io/badge/Status-Project%20Complete-green.svg)](#)
 
 ## Abstract
 
@@ -6,7 +9,7 @@ Species distribution modeling is one of the most popular tools in ecology and na
 
 ---
 
-## Repository Structure
+## 📂 Repository Structure
 
 ```text
 sdmEvaluationMetrics/
@@ -56,8 +59,12 @@ We test the influence of five different partitioning strategies:
 
 ---
 
-## Important Note on Data Size
+## ⚠️ Important Note on Data Size
 
 The full study generates approximately **300GB** of data. To maintain repository functionality, **only a few example files are included in the repository**.
 
 To reproduce the full dataset, please run the scripts in the `R/` folder sequentially.
+
+
+## 📚 Key References
+
