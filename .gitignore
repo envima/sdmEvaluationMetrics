@@ -5,12 +5,13 @@ maxent.jar
 .Rproj.user
 
 # Ignore contents of models, but not the directory itself
-data/resultsMain/maps
-data/resultsMain/results
-data/resultsRealModels/results
-data/resultsRealModels/maps
-data/resultsRealModels/models
-data/resultsImbalanced/results
+data/resultsMain/maps/*
+data/resultsMain/results/*
+data/resultsRealModels/results/*
+data/resultsRealModels/maps/*
+data/resultsRealModels/models/*
+data/resultsImbalanced/results/*
  
 # Do not ignore Markdown files
 !*.md
+!**/README.md
