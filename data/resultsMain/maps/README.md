@@ -1,0 +1,42 @@
+# README – Artificial distribution maps
+
+## Overview
+
+Contains 8,335 `.tif` files (CRS: EPSG:3577 (GDA94 / Australian Albers)). These are artificial distribution maps engineered to exhibit a controlled range of agreement with the real probability of occurrence. 
+
+Unlike species distribution maps created with predictive models, this dataset is artificialy generated to ensure a balanced representation of "good" and "bad" performing maps. This prevents the results from being skewed by an over-representation of high-performing models. 
+
+Pre-calculated random correlation values between the artificial distribution maps and the real probability of occurrence can be found in `data/resultsMain/maps_cor.RDS`.
+
+To simulate diverse error structures (e.g., clumpy vs. fine-grained noise), the Gaussian Random Field is generated with randomized `autocorr_range` values: 20, 50, 100, 500, or 800.
+
+## Naming Convention
+
+Files follow a standardized naming convention to identify the specific simulation parameters. The structure is:
+
+`VSXX_FOLDS_MODEL_testDataD_pointsYYY_replicatesZZ.tif`
+
+### Parameter Reference Table
+
+| Component | Example | Description |
+| :--- | :--- | :--- |
+| **VSXX** | `VS01` | **Virtual Species ID**: Identifier for the species (VS01–VS10). |
+| **FOLDS** | `block1` | **Partitioning Strategy**: The CV method used (`KNNDM`, `random`, `block1`, `block2`, `clusters`). |
+| **MODEL** | `NA` | **Model Type**: Placeholder for the algorithm. `NA` indicates a artificial map. |
+| **testDataD** | `testData1` | **Test Fold**: The specific fold ID (1–6) used as the independent testing set. |
+| **pointsYYY** | `points40` | **Sample Size**: The number of presence points sampled. |
+| **replicatesZZ** | `replicates1` | **Replicate**: The iteration number (1–5). |
+
+## Data Generation
+
+All files in this directory were generated with `R/03_artificial_distribution_maps.R`.
+
+**Software used:**
+R version 4.4.2
+terra 1.8-5
+raster 3.6-32
+climateStability 0.1.4
+NLMR 1.1.1
+RandomFields 3.3.14
+RandomFieldsUtils 1.2.5
+dplyr 1.1.4

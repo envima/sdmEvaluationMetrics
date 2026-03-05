@@ -1,0 +1,41 @@
+# README – Machine Learning Models
+
+## Overview
+
+This directory contains 45,000 species distribution models trained on virtual species data. Each file is a .RDS file.
+
+All raster files were generated during the execution of the script `04_modelling.R`, which implements the modeling workflow adapted from Valavi et al. (2023). These files correspond one-to-one with the model objects saved in the `models` directory and are used in subsequent performance evaluations.
+
+## Naming Convention
+
+Files follow a standardized naming convention to identify the specific simulation parameters. The structure is:
+
+`VSXX_FOLDS_MODEL_testDataD_pointsYYY_replicatesZZ.tif`
+
+### Parameter Reference Table
+
+| Component | Example | Description |
+| :--- | :--- | :--- |
+| **VSXX** | `VS01` | **Virtual Species ID**: Identifier for the species (VS01–VS10). |
+| **FOLDS** | `block1` | **Partitioning Strategy**: The CV method used (`KNNDM`, `random`, `block1`, `block2`, `clusters`). |
+| **MODEL** | `BRT` | Modeling algorithm (`BRT`, `RF`, `GAM`, `Lasso`, or `Maxent`) |
+| **testDataD** | `testData1` | **Test Fold**: The specific fold ID (1–6) used as the independent testing set. |
+| **pointsYYY** | `points40` | **Sample Size**: The number of presence points sampled. |
+| **replicatesZZ** | `replicates1` | **Replicate**: The iteration number (1–5). |
+
+
+**Software used:**
+R version 4.4.2
+climateStability 0.1.4
+dplyr 1.1.4            
+sf 1.0-21              
+terra 1.8-60           
+randomForest 4.7-1.2   
+glmnet 4.1-8          
+Matrix 1.6-5           
+gbm 2.2.2              
+ENMeval 2.0.5.2        
+CAST 1.0.3             
+caret 7.0-1            
+lattice 0.22-5        
+ggplot2 3.5.2         
