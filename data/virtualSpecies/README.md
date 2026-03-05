@@ -2,12 +2,12 @@
 
 ## Overview
 
-The folder contains environmental probability of occurrence maps and full metadata objects for ten virtual species (VS01–VS10). These species were generated using the `virtualspecies` R package based on ecological response functions applied to bioclimatic variables. The virtual species were originally created by Grimmet et al. 2020.
+The folder contains probability of occurrence maps and full metadata objects for ten virtual species (VS01–VS10). These species were generated using the `virtualspecies` R package based on ecological response functions applied to bioclimatic variables. The virtual species were originally created by Grimmet et al. 2020.
 
 ## File Description
 
 `VS01.tif` to `VS10.tif`:
-Raster files representing continuous probability of occurrence values for each virtual species. All rasters are in **EPSG:3577** (GDA94 / Australian Albers). Pixel values range from 0 (unsuitable) to 1 (highly suitable).
+Raster files representing continuous probability of occurrence values for each virtual species. All rasters are in **EPSG:3577** (GDA94 / Australian Albers). Pixel values range from 0 (low probability of occurrence) to 1 (high probability of occurrence).
 
 `VS01.RDS` to `VS10.RDS`:
 Serialized R objects containing full metadata for each virtual species, including the suitability raster, the response functions, and the parameters used in their construction.
@@ -26,7 +26,7 @@ A list documenting how suitability was computed:
     * `parameters`: A named list of parameter settings for each variable.
 
 `suitab.raster`:
-A `terra::SpatRaster` object containing the final suitability.
+A `terra::SpatRaster` object containing the suitability.
 
 ## Data Generation
 

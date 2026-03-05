@@ -1,6 +1,6 @@
 # README – Creation of Spatial Folds
 
-This directory contains spatial cross-validation fold separations for each sampled virtual species dataset (`data/PA`). The folds were generated with the script `002_dataPartition.R` and are stored in `.RDS` format. A total of 2,400 files are present.
+This directory contains spatial cross-validation fold separations for each sampled virtual species dataset (`data/PA`). The folds were generated with the script `02_data_partition.R` and are stored in `.RDS` format. A total of 2,400 files are present.
 
 Each file encodes a single fold separation object for a given points dataset and partitioning strategy. File names follow the format:
 
@@ -31,15 +31,15 @@ Each `.RDS` file is an object specific to the corresponding method:
 
 * `block1`, `block2`, `clusters`: List objects with slot `$folds_ids` mapping each data point to a fold.
 * `KNNDM`: An object of class `"knndm"` with a `$clusters` slot.
-* `random` folds are not stored independently but as part of the presence-absence `.gpkg` in `virtualSpeciesTrain/`.
+* `random` folds are not stored independently but as part of the presence-absence `.gpkg` in `virtualSpeciesTrain`.
 
 ### **Dependencies**
 
 Each fold was generated using:
 
 * Presence-absence data from: `data/PA/`
-* Environmental predictors from: `data/variables.tif` (see `data/` folder)
-* Code used: `002_dataPartition.R`
+* Environmental predictors from: `data/variables.tif`
+* Code used: `02_data_partition.R`
 
 ### References
 

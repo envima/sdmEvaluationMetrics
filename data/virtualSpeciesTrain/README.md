@@ -1,6 +1,6 @@
 # README – virtualSpeciesTrain
 
-This directory contains 600 training datasets for species distribution modeling, derived from presence–absence samples (`data/PA`) and annotated with environmental covariates and multiple (spatial) fold separation assignments. The datasets were generated with the script `R/002_dataPartition.R`. These are the input files for model training.
+This directory contains 600 training datasets for species distribution modeling, derived from presence–absence samples (`data/PA`) and annotated with environmental covariates and multiple (spatial) fold separation assignments. The datasets were generated with the script `R/02_data_partition.R`. These are the input files for model training and evaluation.
 
 Each file is stored in GeoPackage (`.gpkg`) format and contains a single dataset representing one combination of species, sample size, and replicate as well as five different fold separations of the points. File names follow the structure:
 
@@ -40,9 +40,9 @@ Each `.gpkg` file contains an `sf` object with point geometries and 12 attribute
 Each dataset was generated using:
 
 * Presence–absence data: `data/PA/`
-* Spatial folds: `data/run2/folds/`
-* Environmental predictors: `data/variables.tif` (see `data/`)
-* Script: `002_dataPartition.R`
+* Spatial folds: `data/folds/`
+* Environmental predictors: `data/variables.tif`
+* Script: `02_data_partition.R`
 
 **Software used:**
 
