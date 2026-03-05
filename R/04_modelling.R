@@ -52,7 +52,6 @@ df=df[sample(nrow(df)),]
 
 # Load required functions
 source("R/functions/trainSpeciesDistributionModel.R")
-source("R/functions/performanceStabilityIndexReplicates.R")
 
 # create a unique name for different runs
 nameRun <- "resultsRealModels"

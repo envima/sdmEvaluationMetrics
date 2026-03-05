@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `data/` directory contains all data used for simulation, modeling, and evaluation in this study. This dataset consists of environmental variables, virtual species distributions, presence-absence points.
+The `data/` directory contains all data used for simulation, modeling, and evaluation in this study. This dataset consists of environmental variables, virtual species distributions, and presence-absence points.
 
 ## Directory Structure
 
@@ -10,14 +10,18 @@ The directory is organized as follows:
 
 ```
 data/
-├── climate/          # Raw bioclimatic variables
-├── gadm/             # Administrative boundaries
-├── virtualSpecies/   # Simulated virtual species
-├── paRaster/         # Binarized presence-absence rasters
-├── PA/               # Sampled presence-absence data
-├── run2/             # Output directory (e.g., models, maps, evaluation results)
-├── variables.tif     # Environmental predictor stack used for modeling
-├── bg.gpkg           # Background points
+├── climate/          	 # Raw bioclimatic variables
+├── folds/            	 # Spatial deineation of the study area
+├── gadm/             	 # Administrative boundaries
+├── PA/               	 # Sampled presence-absence data
+├── paRaster/         	 # Binarized presence-absence rasters
+├── resultsImbalanced/   # Output directory (e.g., maps, evaluation results) for evaluation metrics calculated on imbalanced test data
+├── resultsMain/         # Output directory (e.g., maps, evaluation results) for evaluation metrics calculated on balanced test data
+├── resultsRealModels/   # Output directory (e.g., models, maps, evaluation results) for models and modelled species distirbution maps for evaluation metrics calculated on on balanced test data
+├── virtualSpecies/  	 # Simulated virtual species as well as probability of occurrence rasters
+├── virtualSpeciesTrain/ # Simulated virtual species
+├── variables.tif        # Environmental predictor stack used for modeling
+├── bg.gpkg              # Background points
 ```
 
 See the README files of the subdirectories for more information.
@@ -26,7 +30,7 @@ See the README files of the subdirectories for more information.
 
 ### `variables.tif`
 
-The code used to create the environmenal variables is available in script `R/001_virtualspecies.R`. A multi-layer raster stack containing four bioclimatic predictors:
+The code used to create the environmenal variables is available in script `R/01_virtualspecies.R`. A multi-layer raster stack containing four bioclimatic predictors:
 
 * `bio_1` – Annual Mean Temperature
 * `bio_3` – Isothermality (BIO2/BIO7 × 100)
@@ -66,7 +70,7 @@ Note: While the column names reflect different spatial cross-validation strategi
 | `geom`     | Simple feature geometry column with point coordinates        |
 
 
-**Source**: Sampled using `predicts::backgroundSample()`. The code used to create the background points is available in script `R/002_dataPartition.R`.
+**Source**: Sampled using `predicts::backgroundSample()`. The code used to create the background points is available in script `R/02_data_partition.R`.
 
 **Software used:**
 

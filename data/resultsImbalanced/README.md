@@ -1,21 +1,19 @@
-# README – Main results of the study
+# README – Evaluation metrics calculated on imbalanced data
 
 ## Overview
 
-This folder contains the primary output data for this study. These results focus on the performance of evaluation metrics using balanced test datasets across three data types: **Presence-Absence (PA)**, **Presence-Background (PBG)**, and **Presence-Artificial-Absence (PAA)**. 
+This folder contains the secondary data output for this study. These results focus on the performance of evaluation metrics using imbalanced test datasets across three data types: **Presence-Absence (PA)**, **Presence-Background (PBG)**, and **Presence-Artificial-Absence (PAA)**. 
 
-The dataset is designed to assess the reliability of different data partitioning strategies by comparing standard metrics against known probability of occurrence.
+The dataset is designed to show the influence of calcualting evaluation metrics on imbalanced datasets. Evaluation metrics are calculated on the artificial distribution maps in `data/resultsMain/maps/`.
 
 ## Directory Structure
 
 The directory is organized as follows:
 
 ```
-resultsMain/
-├── maps/          	 # Artificial distirbution maps
-├── results/         # Individual evaluation metric files (.RDS)
-├── `maps_cor.RDS`   # Experimental design matrix with target correlations 
-├── `results.RDS`    # Compiled dataset of all evaluation metrics (from results folder)
+resultsImbalanced/
+├── results/         # Individual evaluation metric files (.RDS) 
+├── `results.RDS`    # Compiled dataset of all evaluation metrics (from results folder) 
 ```
 
 See the README files of the subdirectories for more information.
@@ -60,20 +58,3 @@ The code used to create the results.RDS file is available in script `R/05_calcul
 | **points** | The total number of points originally sampled |
 | **species** | The identifier for the virtual species (VS01–VS10) |
 
-### `maps_cor.RDS`
-
-This file contains the goodness of fit values used for the generation of the artificial distribution maps. Random values between 0 and 1 are generated for each map to ensure a uniform distribution of "good" and "bad" performing distribution maps. 
-
-The code used to create the `maps_cor.RDS` file is available in script `R/03_artificial_distribution_maps.R`. The file is a dataframe in `.RDS` format with 9,000 observations and contains the following columns:
-
-**Attributes**:
-
-| Column Name		| Description |
-| :--- 				| :--- |
-| **size** 			| Partitioning Strategy: The CV method used (`KNNDM`, `random`, `block1`, `block2`, `clusters`).|
-| **species** 		| Virtual species ID (e.g., VS01 to VS10). |
-| **points** 		| Number of sampled points (40, 80, 120, 160, 200, or 400). |
-| **replicates**	| Specifies the replicate number (1 to 5) |
-| **model** 		| Model Type: Placeholder for the algorithm. `NA` indicates a artificial map.|
-| **testData** 		| Test Fold: The specific fold ID (1–6) used as the independent testing set. |
-| **goodnessOfFit** | Correspondence between the artificial distribution map and the actual probability of occurrence, random values between 0 and 1. |

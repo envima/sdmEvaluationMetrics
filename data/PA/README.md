@@ -21,7 +21,7 @@ Presence-absence raster files (`.tif` format) located in the `paRaster` folder. 
 
   * `VSxx` denotes the virtual species ID (e.g., VS01 to VS10).
   * `yy` indicates the number of sampled points (40, 80, 120, 160, 200, or 400).
-  * `rr` specifies the replicate number (1 to 10).
+  * `rr` specifies the replicate number (1 to 5).
 
 ### `.RDS` Files
 
