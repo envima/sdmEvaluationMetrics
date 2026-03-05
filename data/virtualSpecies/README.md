@@ -40,6 +40,6 @@ Leroy, B., Meynard, C.N., Bellard, C., Courchamp, F. (2015). virtualspecies, an 
 
 **Software used:**
 
-R version 4.4.2
-virtualspecies version 1.6
-terra version 1.8-5
+- R version 4.4.2
+- virtualspecies version 1.6
+- terra version 1.8-5
