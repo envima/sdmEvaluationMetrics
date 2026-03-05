@@ -8,19 +8,32 @@ Species distribution modeling is one of the most popular tools in ecology and na
 
 ## Repository Structure
 
-This repository contains the full analytical pipeline, including virtual species generation, model training, and ploting of the study.
-
-
-.
+```text
+sdmEvaluationMetrics/
 ├── data/
-│   ├── climate/           # Bioclimatic variables (Predictors)
-│   ├── resultsMain/       # Benchmarking results using artificial maps
-│   ├── resultsRealModels/ # Results using ML algorithms (RF, BRT, etc.)
-│   └── virtualSpecies/    # Ground-truth suitability and occurrence data
+│   ├── climate/               # Bioclimatic variables (Predictors)
+│   ├── resultsImbalanced/     # Evaluation results for datasets with skewed prevalence
+│   ├── resultsMain/           # Benchmarking results using calibrated artificial maps
+│   │   ├── maps/              # .tif prediction maps (example files only)
+│   │   ├── results/           # Individual metric files (.RDS)
+│   │   └── results.RDS        # Compiled master dataset
+│   ├── resultsRealModels/     # Outputs from machine learning algorithms (RF, BRT, etc.)
+│   │   ├── maps/              # .tif prediction maps (example files only)
+│   │   ├── models/            # Model objects (.RDS)
+│   │   └── results/           # Individual evaluation metric files (.RDS)
+│   └── virtualSpecies/        # Ground-truth suitability and occurrence data
 ├── R/
-└── README.md
-
-
+│   ├── functions/             # Modular helper functions and model wrappers
+│   ├── 01_virtual_species.R   # Generation of virtual species
+│   ├── 02_data_partition.R    # Spatial cross-validation fold creation
+│   ├── 03_artificial_maps.R   # Generation of calibrated artificial maps
+│   ├── 04_modelling.R         # Machine learning model training
+│   └── 05_calc_metrics.R      # Calculation of evaluation indices
+├── images/                    # Figures and diagrams for the README
+├── .gitignore                 # Rules to prevent uploading large data files (>50GB)
+├── LICENSE                    # Repository license
+└── README.md                  # Main project documentation
+```
 ---
 
 ## Key Components
