@@ -9,54 +9,47 @@ Species distribution modeling is one of the most popular tools in ecology and na
 
 ---
 
+## Workflow
+
+This repository holds all code for the study **"The accuracy of evaluation metrics in presence-only species distribution modelling."** for full reporducability. 
+
+![](/images/Experimental_design.png)
+**Figure : Workflow and experimental design.** The figure is structured in three columns: **Visualization (left column)**: Example maps and diagrams to illustrate each stage of the workflow. **Workflow (middle column)**: Flowchart with decision nodes represented by gears indicates the choices that must be made by the modeler at each stage. Each choice influences the subsequent analyses. **Experiments (right column)**: Summarizes the test parameters and the number of experiments conducted at each stage. The cumulative number of experiments increases across steps, resulting in a total of 9,000 experiments. The workflow progresses through four main stages: (i) **Species simulation**: Four bioclimatic variables (bio1, bio3, bio7, bio12) were used to generate 10 virtual species following Grimmett et al. (2020). Probability-of-occurrence maps were created and transformed into presence-absence rasters. (ii) **Sampling**: From the presence-absence rasters, occurrence points were sampled randomly at six different sample sizes (40, 80, 120, 160, 200, and 400 points). (iii) **Preprocessing**: Sampled points were partitioned into folds using five different fold-separation strategies: random partitioning, k-nearest neighbor distance matching (KNNDM), spatial blocking with hexagonal blocks (block1), spatial blocking with square tiles (block2), and environmental clustering. Each strategy generated six folds, with one fold withheld as test data in each iteration. Stages ii and iii were replicated 5 times. (iv) Evaluation: Artificial distribution maps were created by combining the true probability of occurrence with gaussian random fields (green). Evaluation metrics were calculated for each test dataset (purple; see Figure 2). Pearson's correlation between probability of occurrence and artificial distribution maps were calculated to assess true performance.
+
+## Key results
+
+![](/images/resultsMain/absolute_error_boxplot.png)
+**Figure: Absolute errors of evaluation metrics.** Comparison of absolute errors calculated on presence-absence (PA; blue), presence-background (PBG; purple), and presence-artificial-absence (PAA; green) across six evaluation metrics (AUCROC, Pearson's correlation, AUCPRG, TSS, Cohen’s kappa and PCC). Each boxplot is based on 8,335 data points. Outliers in grey. Low absolute error indicates good assessment of the artificial distribution maps by the evaluation metric. Median absolute error is indicated in the boxplot.
+
+
+![](/images/resultsMain/tolerance_limits.png)
+**Figure: Density distributions and 95% tolerance limits of absolute errors for evaluation metrics.** The plots compare evaluation metrics calculated with three datasets: presence-absence (PA; blue), presence-background (PBG; purple), and presence-artificial-absence (PAA; green). Dashed vertical lines indicate the upper-bound tolerance limits, representing the threshold below which 95% of absolute errors fall with 95% confidence. 
+
+---
+
+
+
 ## 📂 Repository Structure
 
 ```text
 sdmEvaluationMetrics/
 ├── data/
 │   ├── climate/               # Bioclimatic variables (Predictors)
+│   ├── folds/                 #
+│   ├── gadm/                  #
+│   ├── PA/                    #
+│   ├── paRaster/              # 
 │   ├── resultsImbalanced/     # Evaluation results for datasets with skewed prevalence
 │   ├── resultsMain/           # Benchmarking results using calibrated artificial maps
-│   │   ├── maps/              # .tif prediction maps (example files only)
-│   │   ├── results/           # Individual metric files (.RDS)
-│   │   └── results.RDS        # Compiled master dataset
 │   ├── resultsRealModels/     # Outputs from machine learning algorithms (RF, BRT, etc.)
-│   │   ├── maps/              # .tif prediction maps (example files only)
-│   │   ├── models/            # Model objects (.RDS)
-│   │   └── results/           # Individual evaluation metric files (.RDS)
-│   └── virtualSpecies/        # Ground-truth suitability and occurrence data
-├── R/
-│   ├── functions/             # Modular helper functions and model wrappers
-│   ├── 01_virtual_species.R   # Generation of virtual species
-│   ├── 02_data_partition.R    # Spatial cross-validation fold creation
-│   ├── 03_artificial_maps.R   # Generation of calibrated artificial maps
-│   ├── 04_modelling.R         # Machine learning model training
-│   └── 05_calc_metrics.R      # Calculation of evaluation indices
+│   ├── virtualSpecies/        # Ground-truth suitability and occurrence data
+│   └── virtualSpeciesTrain/   #
+├── R
 ├── images/                    # Figures and diagrams for the README
 ├── .gitignore                 # Rules to prevent uploading large data files (>50GB)
 ├── LICENSE                    # Repository license
 └── README.md                  # Main project documentation
 ```
----
-
-## Key Components
-
-### 1. Data Generation
-We utilize the `virtualspecies` R package to create 10 distinct virtual species (**VS01–VS10**) with known environmental preferences. This allows for the calculation of the "True Correlation" ($trueCor$), which serves as the ground-truth benchmark for all evaluation metrics.
-
-### 2. Evaluated Metrics
-The pipeline calculates 29 variables, including:
-* **Traditional Metrics**: AUC, TSS, Kappa, PCC, COR.
-* **Spatial Bias Indicators (SBI)**: Area displacement, patch size similarity, and centroid reach.
-* **Precision-Recall**: PRG, SEDI, ORSS.
-
-### 3. Spatial Cross-Validation
-We test the influence of five different partitioning strategies:
-* **KNNDM** (Nearest Neighbor Distance Matching)
-* **Spatial Blocks** (Block1 & Block2)
-* **Environmental Clusters**
-* **Random Partitioning**
-
 ---
 
 ## ⚠️ Important Note on Data Size
