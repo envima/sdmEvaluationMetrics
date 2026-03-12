@@ -11,7 +11,7 @@ Species distribution modeling is one of the most popular tools in ecology and na
 
 ## Workflow
 
-This repository holds all code for the study **"The accuracy of evaluation metrics in presence-only species distribution modelling."** for full reporducability. 
+This repository holds all code for the study **"The accuracy of evaluation metrics in presence-only species distribution modelling."** for full reporducability.
 
 ![](/images/Experimental_design.png)
 **Figure : Workflow and experimental design.** The figure is structured in three columns: **Visualization (left column)**: Example maps and diagrams to illustrate each stage of the workflow. **Workflow (middle column)**: Flowchart with decision nodes represented by gears indicates the choices that must be made by the modeler at each stage. Each choice influences the subsequent analyses. **Experiments (right column)**: Summarizes the test parameters and the number of experiments conducted at each stage. The cumulative number of experiments increases across steps, resulting in a total of 9,000 experiments. The workflow progresses through four main stages: (i) **Species simulation**: Four bioclimatic variables (bio1, bio3, bio7, bio12) were used to generate 10 virtual species following Grimmett et al. (2020). Probability-of-occurrence maps were created and transformed into presence-absence rasters. (ii) **Sampling**: From the presence-absence rasters, occurrence points were sampled randomly at six different sample sizes (40, 80, 120, 160, 200, and 400 points). (iii) **Preprocessing**: Sampled points were partitioned into folds using five different fold-separation strategies: random partitioning, k-nearest neighbor distance matching (KNNDM), spatial blocking with hexagonal blocks (block1), spatial blocking with square tiles (block2), and environmental clustering. Each strategy generated six folds, with one fold withheld as test data in each iteration. Stages ii and iii were replicated 5 times. (iv) Evaluation: Artificial distribution maps were created by combining the true probability of occurrence with gaussian random fields (green). Evaluation metrics were calculated for each test dataset (purple; see Figure 2). Pearson's correlation between probability of occurrence and artificial distribution maps were calculated to assess true performance.
@@ -35,20 +35,18 @@ This repository holds all code for the study **"The accuracy of evaluation metri
 sdmEvaluationMetrics/
 ├── data/
 │   ├── climate/               # Bioclimatic variables (Predictors)
-│   ├── folds/                 #
-│   ├── gadm/                  #
-│   ├── PA/                    #
-│   ├── paRaster/              # 
-│   ├── resultsImbalanced/     # Evaluation results for datasets with skewed prevalence
-│   ├── resultsMain/           # Benchmarking results using calibrated artificial maps
-│   ├── resultsRealModels/     # Outputs from machine learning algorithms (RF, BRT, etc.)
-│   ├── virtualSpecies/        # Ground-truth suitability and occurrence data
-│   └── virtualSpeciesTrain/   #
-├── R
-├── images/                    # Figures and diagrams for the README
-├── .gitignore                 # Rules to prevent uploading large data files (>50GB)
-├── LICENSE                    # Repository license
-└── README.md                  # Main project documentation
+│   ├── folds/                 # Spatial delineation strategies
+│   ├── gadm/                  # Administrative boundaries
+│   ├── PA/                    # Presence-absence data
+│   ├── paRaster/              # Presence-absence rasters of the virtual species
+│   ├── resultsImbalanced/     # Results on an imbalanced dataset
+│   ├── resultsMain/           # Results on a balanced dataset
+│   ├── resultsRealModels/     # Results achieved with machine learning algorithms (RF, BRT, etc.)
+│   ├── virtualSpecies/        # Ground-truth suitability of the species
+│   └── virtualSpeciesTrain/   # training data for the models
+├── R                          # All R code
+├── images/                    # Figures
+└── README.md                  
 ```
 ---
 
@@ -60,4 +58,9 @@ To reproduce the full dataset, please run the scripts in the `R/` folder sequent
 
 
 ## 📚 Key References
+Grimmet, L., Whitsed, R., Horta, A. (2020). Presence-only species distribution models are sensitive to sample prevalence: Evaluating models using spatial prediction stability and accuracy metrics. *Ecological Modelling*. [https://doi.org/10.1016/j.ecolmodel.2020.109194](https://doi.org/10.1016/j.ecolmodel.2020.109194)
+
+Leroy, B., Meynard, C.N., Bellard, C., Courchamp, F. (2015). virtualspecies, an R package to generate virtual species distributions. Ecography. [https://doi.org/10.1111/ecog.01388](https://doi.org/10.1111/ecog.01388)
+
+Valavi, R., Elith, J., Lahoz-Monfort, J. J., & Guillera-Arroita, G. (2019). blockCV: An R package for generating spatially or environmentally separated folds for k-fold cross-validation of species distribution models. *Methods in Ecology and Evolution*, 10(2), 225–232. [https://doi.org/10.1111/2041-210X.13107](https://doi.org/10.1111/2041-210X.13107)
 
