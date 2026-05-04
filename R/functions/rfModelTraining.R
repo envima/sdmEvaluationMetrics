@@ -43,6 +43,7 @@ rfModelTraining <- function(trainingData, # df
                              outputPathModel, # string
                              outputPathPrediction, # string of the path to the model output
                              spacevar, # string to the column that holds the assignment of each row to a fold
+                             timevar,
                              k=5, # number of folds
                              prediction=T, # should the predcition also be done?
                              variables # if the prediction is done also environmental rasters are needed
@@ -82,7 +83,7 @@ rfModelTraining <- function(trainingData, # df
   trainingData[[response]] <- as.factor(trainingData[[response]])
   
   # Create spatial cross-validation folds
-  cv_folds=CAST::CreateSpacetimeFolds(trainingData, spacevar = spacevar, k=k)
+  cv_folds=CAST::CreateSpacetimeFolds(trainingData, spacevar = spacevar, timevar = timevar, k=k)
   
   # Define spatial CV settings
   cv_control <- caret::trainControl(
