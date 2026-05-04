@@ -41,7 +41,7 @@ rfModelTraining <- function(trainingData, # df
                              response, # string
                              predictors, # vector with stringds of the predictor columns
                              outputPathModel, # string
-                             outputPathPrediction=NA, # string of the path to the model output
+                             outputPathPrediction=NULL, # string of the path to the model output
                              spacevar, # string to the column that holds the assignment of each row to a fold
                              timevar,
                              k=5, # number of folds
