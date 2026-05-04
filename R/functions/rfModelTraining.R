@@ -41,12 +41,12 @@ rfModelTraining <- function(trainingData, # df
                              response, # string
                              predictors, # vector with stringds of the predictor columns
                              outputPathModel, # string
-                             outputPathPrediction, # string of the path to the model output
+                             outputPathPrediction=NA, # string of the path to the model output
                              spacevar, # string to the column that holds the assignment of each row to a fold
                              timevar,
                              k=5, # number of folds
                              prediction=T, # should the predcition also be done?
-                             variables # if the prediction is done also environmental rasters are needed
+                             variables=NULL # if the prediction is done also environmental rasters are needed
 ){
   
   # Load required packages
@@ -66,9 +66,12 @@ rfModelTraining <- function(trainingData, # df
   assertthat::assert_that(is.character(outputPathModel), is.character(outputPathPrediction))
   assertthat::assert_that(is.numeric(k) && k > 1)
   assertthat::assert_that(is.logical(prediction))
+# 2. Conditional assertion for Prediction Path
   if (prediction) {
+    assertthat::assert_that(is.character(outputPathPrediction), 
+                            msg = "outputPathPrediction must be provided if prediction is TRUE")
     assertthat::assert_that(inherits(variables, "SpatRaster") || inherits(variables, "Raster"), 
-                            msg = "variables must be a SpatRaster or Raster object")
+                            msg = "variables must be a SpatRaster or Raster object if prediction is TRUE")
   }
   
   # Ensure binary response is coded as 0/1
