@@ -63,7 +63,7 @@ rfModelTraining <- function(trainingData, # df
   assertthat::assert_that(all(predictors %in% colnames(trainingData)), msg = "Some predictors are not in trainingData")
   assertthat::assert_that(spacevar %in% colnames(trainingData), msg = "spacevar not found in trainingData")
   assertthat::assert_that(is.character(response), is.character(predictors), is.character(spacevar))
-  assertthat::assert_that(is.character(outputPathModel), is.character(outputPathPrediction))
+  assertthat::assert_that(is.character(outputPathModel), msg = "outputPathModel must be a character string")
   assertthat::assert_that(is.numeric(k) && k > 1)
   assertthat::assert_that(is.logical(prediction))
 # 2. Conditional assertion for Prediction Path
