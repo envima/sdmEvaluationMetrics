@@ -55,6 +55,7 @@ rfModelTraining <- function(trainingData, # df
   requireNamespace("terra")
   requireNamespace("climateStability")
   requireNamespace("assertthat")
+   requireNamespace("tidyverse")
   
   ## Check input validity
   assertthat::assert_that(is.data.frame(trainingData), msg = "trainingData must be a data.frame")
